@@ -33,3 +33,17 @@ __**Tabla de Casos**__
 | 15 | Caso con interacción entre reglas | 16 minutos - Cliente Frecuente | $18.00 | Por la regla 6) y 8) | A partir de los 16 minutos, se cobra $20.00, pero como es un cliente frecuente, se le descuenta el 10%, que son dos pesos en este caso.
 | 16 | Caso con decimales | 181 minutos - Cliente Frecuente | $58.5 | Por la regla 7) y 8) | Se cobra lo de los 16 minutos que son $20.00, pasa la primera hora, se suman $15.00, pasa otra hora y se suman $15.00, se quedó un minuto más, es decir, inció otra hora, le añadimos otros $15.00, que al final suma $65.00, como es un cliente frecuente, entonces le debemos de dar un descuento del 10% que son $6.5, se lo restamos al total y nos queda $58.5.
 | 17 | Caso propuesto: Costo de dejar el coche todo un dia | 1440 minutos - Cliente Normal | $380.00 | Por la regla 7) | Un día tiene 1440 minutos, es decir, 24 horas, tomamos los 15 minutos gratis, luego cobramos $20.00 a los 16 minutos, luego, pasa la primera hora y le cobramos $15.00, para simplificar los cálculos, debemos de multiplicar las 24 horas por $15.00, y sumarle los $20.00, que nos da un total de $380.00.
+
+# Durante la implementación...
+En esta primera parte, se implementaron los test:
+`test_ejemplo_inicial(sistema); test_caso_normal1(sistema); test_caso_normal14(sistema); test_caso_normal17(sistema); test_caso_frontera15(sistema); test_caso_frontera16(sistema); test_caso_frontera60(sistema); test_caso_frontera61(sistema); test_caso_invalido(sistema); test_caso_cliente_frecuente16(sistema)`
+
+Que, al ejecutar pytest, obtenemos lo siguiente:
+
+<div align="center">
+
+<img src="./python/imagenes_tests/primera_ejecucion.png" width="800">
+
+</div>
+
+Vemos que las pruebas que fallaron fueron en dos fronteras, en la frontera de 15 minutos y en la frontera de 61 minutos, revisamos lo que nos arrojó pytest, y vemos que la funcion `calcular_total(minutos, tipo_cliente, boleto_perdido)` debe de tener algún error, pues la variable resultado tomó el valor de 20.00 cuando debia de ser de 0.0.
