@@ -47,3 +47,13 @@ Que, al ejecutar pytest, obtenemos lo siguiente:
 </div>
 
 Vemos que las pruebas que fallaron fueron en dos fronteras, en la frontera de 15 minutos y en la frontera de 61 minutos, revisamos lo que nos arrojó pytest, y vemos que la funcion `calcular_total(minutos, tipo_cliente, boleto_perdido)` debe de tener algún error, pues la variable resultado tomó el valor de 20.00 cuando debia de ser de 0.0.
+
+Respecto a la frontera de 15 minutos, debíamos de colocar un =, para que tome en cuenta que en el minuto 15, aún no empieza el cobro.
+
+<div align="center">
+
+<img src="./python/imagenes_tests/arreglo_de_15min.png" width="800">
+
+</div>
+
+Vemos que la prueba ya pasa con esa modificación que hicimos, ahora veamos que sucede con los 61 minutos.
