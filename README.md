@@ -1,10 +1,28 @@
 # Versión Python
 
+## Requisitos previos
+
+* **Python 3.8 o superior**
+
+
 ## Ejecutar
 
 ```bash
-python -m pip install -r requirements.txt
-pytest -v
+1. Clonar el repositorio: 
+    git clone https://github.com/SaraiBalanzar/Practica-4-pruebas-unitarias.git
+2. Mover a la carpeta principal: 
+    cd Practica-4-pruebas-unitarias
+3. Crear y activar un entorno virtual
+    - En linux o macOS: 
+        python3 -m venv venv
+        source venv/bin/activate
+    - En windows
+        python -m venv venv
+        venv\Scripts\activate
+4. Instalar las dependencias
+    pip install -r requirements.txt
+5. Ejecutar las pruebas
+    pytest -v
 ```
 
 El archivo `test_estacionamiento.py` contiene únicamente un ejemplo inicial.
