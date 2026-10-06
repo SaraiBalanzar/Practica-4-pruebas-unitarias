@@ -7,13 +7,7 @@ class Estacionamiento:
 
     def calcular_total(self, minutos: int, tipo_cliente: str = "normal",
                        boleto_perdido: bool = False) -> float:
-        """
-        Calcula el total a pagar de acuerdo con el modelo de la práctica.
-
-        Nota para el alumno:
-        trate esta implementación como un sistema que debe verificarse.
-        No asuma que todo lo que hace el código es correcto.
-        """
+        
         if minutos < 0:
             raise ValueError("Los minutos no pueden ser negativos")
 
@@ -27,8 +21,12 @@ class Estacionamiento:
         elif minutos <= 60:
             total = 20.0
         else:
-            horas_adicionales = (minutos - 60) // 60
-            total = 20.0 + (horas_adicionales * 15.0)
+            horas = minutos // 60 #¿cuantas horas tengo?
+            if minutos % 60 != 0: #si los minutos no son "exactos", es decir, si no son exactamente multiplo de 60
+                horas += 1
+
+            total = 20.0 + ((horas - 1) * 15.0) #le quitamos 1 hora, porque esa ya se cobró de cierta manera y solo ocupamos que
+                                                #se empiece a cobrar a partir de los 61 minutos otra hora, de los 121 otra y asi sucesivamente
 
         if tipo_cliente == "frecuente":
             total *= 0.90
