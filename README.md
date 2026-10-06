@@ -90,8 +90,44 @@ Ahora, resta correr las pruebas y ver que sucede:
 
 </div>
 
-Todas las pruebas pasan :)
+\
+\
+Al crear la prueba para un caso de interacción entre reglas definimos el caso en donde el cliente es de tipo frecuente pero perdió su boleto. 
 
+Como el boleto está perdido, ya no importa que tipo de cliente de sea y los minutos, el costo final es de $300.00
+
+Al ejecutar la prueba vemos que este caso no pasa:
+<div align="center">
+
+<img src="./python/imagenes_tests/test_interaccion_failed.png" width="800">
+
+</div>
+
+Esto ocurre porque dentro del código de la clase Estacionamiento, la funcion `calcular_total(minutos, tipo_cliente, boleto_perdido)` una vez que valida que el boleto este perdido se sigue a verificar los otros casos, en lugar de devolver directamente $300.00
+
+Haciendo la correción en la función:
+<div align="center">
+
+<img src="./python/imagenes_tests/correccion_boleto_perdido.png" width="800">
+
+</div>
+
+Y volviendo a ejecutar las pruebas, esta vez pasan todas:
+<div align="center">
+
+<img src="./python/imagenes_tests/test_interaccion_passed.png" width="800">
+
+</div>
+
+----
+
+# Evidencia final
+Se adjunta evidencia de la ejecucion de las pruebas finales:
+<div align="center">
+
+<img src="./python/imagenes_tests/evidencia_final.png" width="800">
+
+</div>
 
 # Análisis
 
