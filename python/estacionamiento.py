@@ -15,7 +15,7 @@ class Estacionamiento:
             raise ValueError("Tipo de cliente no válido")
 
         if boleto_perdido:
-            total = self.TARIFA_BOLETO_PERDIDO
+            return self.TARIFA_BOLETO_PERDIDO # ya no guardamos los $300.00, directamente los devolvemos
         elif minutos <= 15: #se añadió un =, pues el cobro empieza a ser desde los 16 minutos, no desde los 15.
             total = 0.0
         elif minutos <= 60:
