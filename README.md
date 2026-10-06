@@ -74,4 +74,33 @@ Respecto a la frontera de 15 minutos, debíamos de colocar un =, para que tome e
 
 </div>
 
-Vemos que la prueba ya pasa con esa modificación que hicimos, ahora veamos que sucede con los 61 minutos.
+Vemos que la prueba ya pasa con esa modificación que hicimos. Ahora, modificamos el código en la parte de `else`, pues calculaba mal el cobro, hacia lo que se muestra en la imagen de arriba, lo que debemos considerar es el total de horas que tenemos, esto dividiendo (enteramente) a los minutos entre 60, y después verificamos que si los minutos no son múltiplos de 60, entonces la hora se sume, pues lo que buscamos es que si por ejemplo, estamos en el minuto 120, aun no se cobren otros $15.00, pero si estamos en el minuto 121, ahora si lo cobremos, y esto es posible añadiendo otra hora a nuestro conteo. Finalmente, modificamos nuestro total, quitándole una hora a las horas totales, pues ya la cobramos (de alguna manera) cuando se rebasó los 15 minutos, y cobramos $20.00, pues de ahí el cobro a la siguiente hora será a los 61 minutos... resumidamente, le quitamos una hora para no cobrar de más. Quedando nuestro código de la siguiente manera:
+ 
+<div align="center">
+
+<img src="./python/imagenes_tests/codigo_arreglado.png" width="800">
+
+</div>
+
+Ahora, resta correr las pruebas y ver que sucede:
+
+<div align="center">
+
+<img src="./python/imagenes_tests/tests_pasaron.png" width="800">
+
+</div>
+
+Todas las pruebas pasan :)
+
+
+# Análisis
+
+*1. ¿Qué diferencia hay entre un caso normal y un caso frontera?*
+
+*2. ¿Cuál de sus pruebas considera más importante y por qué?*
+
+*3. ¿Encontró algún comportamiento de la implementación que no coincida con el modelo?*
+
+*4. ¿Una suite con 100 % de pruebas aprobadas demuestra que el programa es correcto? Explique.*
+
+*5. Si una IA generara automáticamente 50 pruebas, ¿qué tendría que revisar una persona antes de confiar en ellas?*

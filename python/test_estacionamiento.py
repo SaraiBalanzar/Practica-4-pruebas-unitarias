@@ -52,6 +52,16 @@ def test_caso_frontera61(sistema):
     resultado = sistema.calcular_total(minutos, "normal", False)
     assert resultado == 35.00
 
+def test_caso_frontera120(sistema):
+    minutos = 120
+    resultado = sistema.calcular_total(minutos, "normal", False)
+    assert resultado == 35.00
+
+def test_caso_frontera121(sistema):
+    minutos = 121
+    resultado = sistema.calcular_total(minutos, "normal", False)
+    assert resultado == 50.00        
+
 
 #a partir de aquí estan los casos con entradas inválidas
 def test_caso_invalido(sistema):
