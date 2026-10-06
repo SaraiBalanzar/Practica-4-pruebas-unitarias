@@ -63,31 +63,60 @@ def test_caso_frontera121(sistema):
     assert resultado == 50.00        
 
 
-#a partir de aquí estan los casos con entradas inválidas
-def test_caso_invalido(sistema):
+# pruebas de casos con entradas inválidas
+def test_caso_invalido_minutos_negativo(sistema):
     minutos = -1
     with pytest.raises(ValueError):
         sistema.calcular_total(minutos, "normal", False) 
 
+def test_caso_invalido_tipo_cliente(sistema):
+    minutos = 0
+    tipo_cliente = "especial"
+    with pytest.raises(ValueError):
+        sistema.calcular_total(minutos, tipo_cliente, False)
 
-#aqui deben de ir casos parametrizados
-# 
-#     
-
-
-#a partir de aquí, hay casos con interacciones entre reglas.
+# pruebas de casos con interacciones entre reglas.
 def test_caso_cliente_frecuente16(sistema):
     minutos = 16
     resultado = sistema.calcular_total(minutos, "frecuente", False)
     assert resultado == 18.00 #no se utiliza .aprox, pues es algo entero todavía
 
+def test_caso_cliente_frecuente_boleto_perdido(sistema):
+    minutos = 10
+    tipo_cliente = "frecuente"
+    resultado = sistema.calcular_total(minutos, tipo_cliente, True)
+    assert resultado == 300.00
+    
+# prueba utilizando pytest.aprox cuando el resultado es decimal.
+def test_caso_con_decimal(sistema):
+    minutos = 181
+    resultado = sistema.calcular_total(minutos, "frecuente", False)
+    assert resultado == pytest.approx(58.5)
 
+# USO DE PARAMETRIZE: casos normales y casos frontera
+@pytest.mark.parametrize(
+    "minutos, esperado",
+    [
+        (5, 0.00), # caso normal
+        (30, 20.00), # caso normal
+        (70, 35.00), # caso normal
+        (0, 0.00), # caso frontera
+        (1, 0.00), # caso frontera
+        (15, 0.00), # caso frontera
+        (16, 20.00), # caso frontera
+        (60, 20.00), # caso frontera
+        (61, 35.00), # caso frontera
+        (120, 35.00), # caso frontera
+        (121, 50.00), # caso frontera
+    ]
+)
+def test_casos_normales_fronteras_validos(sistema, minutos, esperado):
+    assert sistema.calcular_total(minutos, "normal", False) == esperado
 
+# USO DE PARAMETRIZE: casos inválidos
+@pytest.mark.parametrize("minutos_invalidos", [-10, -100, -20])
+def test_casos_invalidos_lanza_error(sistema, minutos_invalidos):
+    with pytest.raises(ValueError):
+        sistema.calcular_total(minutos_invalidos, "normal", False)
+        
 
-# TODO:
-# 1. Agregue casos normales.
-# 2. Agregue casos frontera.
-# 3. Agregue entradas inválidas con pytest.raises.
-# 4. Agregue casos parametrizados con @pytest.mark.parametrize.
-# 5. Use pytest.approx cuando el resultado esperado tenga decimales.
-# 6. Pruebe interacciones entre reglas.
