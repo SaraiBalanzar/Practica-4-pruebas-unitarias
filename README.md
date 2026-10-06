@@ -132,11 +132,23 @@ Se adjunta evidencia de la ejecucion de las pruebas finales:
 # Análisis
 
 *1. ¿Qué diferencia hay entre un caso normal y un caso frontera?*
+Un caso normal se refiere a una prueba que cae entre los limites que establecimos, sirve para verificar que se cumpla el comportamiento esperado en un rango sin qu enos preocupemos de los limites u orillas de este . Los casos frontera son aquellos casos donde la prueba esta justo en el limite o justo antes y despues de este
 
 *2. ¿Cuál de sus pruebas considera más importante y por qué?*
+Las pruebas donde las reglas se cruzan y los casos frontera pues son los casos que más podemos legar a olvidar de verificar. Si un caso cruza dos reglas puede pasar que cumple ambas reglas, pero que rompre con las reglas generales del programa. Un ejemplo de esto, en este programa, es el caso de qu eun cliente frecuente pierda su boleto. Los casos frontera, por su parte, al ser el punto donde el comportamiento del prograam cambia debemso asegurarnos que cambie bien y en el punto exacto. Un ejemplo de esto es asegurarnos que a los 15 minutos el costo siga siendo de $0.00, y apartir del 16 que sea de $20.00 (y que no pase que apartir del 15 se incremente el costo por ejemplo)
 
 *3. ¿Encontró algún comportamiento de la implementación que no coincida con el modelo?*
 
 *4. ¿Una suite con 100 % de pruebas aprobadas demuestra que el programa es correcto? Explique.*
+No. Lo que demuestra es que el programa se comporta como se espera en los casos, o errores, en el que lo probamos. Es decir, solo garantiza el comportaiento para lo que nosotros pensamos y no para todos los posibles casos o errores. Ademas, siempre esta la posibilidad que nuestras pruebas esten mal, no lo notemos, y al ver que pasan las pruebas pensemos erroneamente que es correcto
 
 *5. Si una IA generara automáticamente 50 pruebas, ¿qué tendría que revisar una persona antes de confiar en ellas?*
+Verificar que las pruebas se comporten como deberian, que cubran casos normales, casos frontera y cuando se entrecruzan las reglas. que se pueda verificar los errores esperados y si hay diferentes formas en las que una regla se comporta (como en este caso es con el tipo de cliente) que se verifique su comportamiento 
+
+## Integrantes del equipo
+- **Ruth Sarai Guadalupe Balanzar**
+- **Alondra Campos Mendoza**
+- **Edith Alejandra Mendoza Aragón**
+- **Evelyn Vianey Mondragón Ceballos**
+- **Oscar Adolfo Jaimez Martinez**
+- **Jorge Guadalupe Mancilla Laguna**
