@@ -103,7 +103,7 @@ Al ejecutar la prueba vemos que este caso no pasa:
 
 </div>
 
-Esto ocurre porque dentro del código de la clase Estacionamiento, la funcion `calcular_total(minutos, tipo_cliente, boleto_perdido)` una vez que valida que el boleto este perdido se sigue a verificar los otros casos, en lugar de devolver directamente $300.00
+Esto ocurre porque dentro del código de la clase Estacionamiento, la funcion `calcular_total(minutos, tipo_cliente, boleto_perdido)` una vez que valida que el boleto esté perdido se sigue a verificar los otros casos, en lugar de devolver directamente $300.00
 
 Haciendo la correción en la función:
 <div align="center">
@@ -138,6 +138,19 @@ Un caso normal se refiere a una prueba que cae entre los limites que establecimo
 Las pruebas donde las reglas se cruzan y los casos frontera pues son los casos que más podemos legar a olvidar de verificar. Si un caso cruza dos reglas puede pasar que cumple ambas reglas, pero que rompre con las reglas generales del programa. Un ejemplo de esto, en este programa, es el caso de qu eun cliente frecuente pierda su boleto. Los casos frontera, por su parte, al ser el punto donde el comportamiento del prograam cambia debemso asegurarnos que cambie bien y en el punto exacto. Un ejemplo de esto es asegurarnos que a los 15 minutos el costo siga siendo de $0.00, y apartir del 16 que sea de $20.00 (y que no pase que apartir del 15 se incremente el costo por ejemplo)
 
 *3. ¿Encontró algún comportamiento de la implementación que no coincida con el modelo?*
+
+Se encontró que el programa violaba las siguientes reglas del modelo:
+* R3: Si el boleto está perdido, el costo final es de $300.00, sin importar los minutos ni el tipo de cliente.
+    
+    Al hacer una prueba con cliente de tipo frecuente y con boleto perdido. La función calcular no respetaba el costo final de $300.00. Cobraba la "multa" pero hacía el descuento especial por tipo de cliente.
+
+* R5: De 1 a 15 minutos, el costo es de $0.00.
+    
+    Al hacer una prueba con 15 minutos (frontera) se encontró que la función cobraba $20.00, cuando el comportamiento esperado era que no cobrara nada. Esto sucedía porque a la función le faltaba especificarle que incluyera los 15 minutos en el rango donde no debe cobrarse nada.
+
+* R7: Después de 60 minutos se cobran $20.00 por la primera hora y $15.00 por cada hora adicional iniciada.
+    
+    Al hacer una prueba con 61 minutos (frontera) se encontró que la función hacía un cobro de $35.00., es decir, cobraba los $20.00 correspondientes a la hora pero también añadía el cargo de $15.00. por hora adicional.
 
 *4. ¿Una suite con 100 % de pruebas aprobadas demuestra que el programa es correcto? Explique.*
 No. Lo que demuestra es que el programa se comporta como se espera en los casos, o errores, en el que lo probamos. Es decir, solo garantiza el comportaiento para lo que nosotros pensamos y no para todos los posibles casos o errores. Ademas, siempre esta la posibilidad que nuestras pruebas esten mal, no lo notemos, y al ver que pasan las pruebas pensemos erroneamente que es correcto
